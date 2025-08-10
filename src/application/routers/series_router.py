@@ -6,7 +6,6 @@ from src.infrastructure.database.session_db import get_trd_repository
 from src.infrastructure.security.keycloak import get_current_user, User
 
 router = APIRouter(
-    prefix="/api/v1",
     tags=["Series"],
     responses={404: {"description": "Not found"}},
     dependencies=[Depends(get_current_user)],

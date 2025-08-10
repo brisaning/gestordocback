@@ -6,7 +6,6 @@ from src.infrastructure.database.session_db import get_trd_repository
 from src.infrastructure.security.keycloak import get_current_user, User
 
 router = APIRouter(
-    prefix="/api/v1",
     tags=["Subseries"],
     responses={404: {"description": "Not found"}},
     dependencies=[Depends(get_current_user)],
@@ -17,13 +16,13 @@ router = APIRouter(
 async def get_subseries(repo: TrdRepository = Depends(get_trd_repository)):
     return repo.get_subseries()
 
-@router.get("/subseries/id/{id}", response_model=Subserie)
+@router.get("/subseries/{id}", response_model=Subserie)
 async def get_subseries_by_id(id: int, repo: TrdRepository = Depends(get_trd_repository)):
     return repo.get_subseries_by_id(id)
 
-@router.get("/subseries/{serie_id}", response_model=List[Subserie])
-async def get_subseries_by_serie(serie_id: int, repo: TrdRepository = Depends(get_trd_repository)):
-    return repo.get_subseries_by_serie(serie_id)
+@router.get("/subseries/code/{code}", response_model=List[Subserie])
+async def get_subseries_by_serie(code: int, repo: TrdRepository = Depends(get_trd_repository)):
+    return repo.get_subseries_by_serie(code)
 
 @router.post("/subseries", response_model=Subserie)
 async def create_subserie(subserie: Subserie, repo: TrdRepository = Depends(get_trd_repository)):

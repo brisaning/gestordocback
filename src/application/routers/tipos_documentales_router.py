@@ -6,7 +6,6 @@ from src.infrastructure.database.session_db import get_trd_repository
 from src.infrastructure.security.keycloak import get_current_user, User
 
 router = APIRouter(
-    prefix="/api/v1",
     tags=["Tipos Documentales"],
     responses={404: {"description": "Not found"}},
     dependencies=[Depends(get_current_user)],
@@ -21,9 +20,9 @@ async def get_tipos_documentales(repo: TrdRepository = Depends(get_trd_repositor
 async def get_tipo_documental(id: int, repo: TrdRepository = Depends(get_trd_repository)):
     return repo.get_tipo_documental(id)
 
-@router.get("/tipos-documentales/{subserie_id}", response_model=List[TipoDocumental])
-async def get_tipos_documentales_by_subserie(subserie_id: int, repo: TrdRepository = Depends(get_trd_repository)):
-    return repo.get_tipos_documentales_by_subserie(subserie_id)
+@router.get("/tipos-documentales/tipo/{tipo}", response_model=List[TipoDocumental])
+async def get_tipos_documentales_by_subserie(tipo: int, repo: TrdRepository = Depends(get_trd_repository)):
+    return repo.get_tipos_documentales_by_subserie(tipo)
 
 @router.post("/tipos-documentales", response_model=TipoDocumental)
 async def create_tipo_documental(tipo_documental: TipoDocumental, repo: TrdRepository = Depends(get_trd_repository)):
