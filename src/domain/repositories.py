@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from .models import Serie, Subserie, TipoDocumental
+from src.domain.model import Serie, Subserie, TipoDocumental
 
 class TrdRepository(ABC):
 

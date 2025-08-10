@@ -1,6 +1,6 @@
 from typing import List
 from sqlalchemy.orm import Session
-from src.domain.models import Serie, Subserie, TipoDocumental
+from src.domain.model import Serie, Subserie, TipoDocumental
 from src.domain.repositories import TrdRepository
 from src.infrastructure.database.models import Serie as SerieModel, Subserie as SubserieModel, TipoDocumental as TipoDocumentalModel
 
